@@ -1,29 +1,26 @@
-// 导入自己下载的 作用是在bundle.js中增加一句注释
-var webpack = require('webpack');
-// 导入html-webpack-plugin 作用是根据参照文件生成index.html(自动导入bundle.js)
+
+// 导入
 var HtmlWebpackPlugin=require('html-webpack-plugin');
 
-module.exports = {
-    // 打包的入口文件
-  entry: './src/main.js',
-  output: {
-    path: __dirname,
-    filename: 'bundle.js'
-  },
+module.exports={
+  // 打包入口文件
+  entry:"./src/main.js",
   module: {
-    rules: [{
-      test: /\.vue$/,
-      use: [{
-          loader: 'vue-loader'
-        }
-      ]
-    }]
+    rules: [
+      {
+        test: /\.vue$/,
+        use: [
+          { loader: 'vue-loader' }
+        ]
+      }
+    ]
   },
   plugins: [
-    new webpack.BannerPlugin('This file is created by Handsome Wyf'),
     new HtmlWebpackPlugin({
-        template:'./template.html',//指定参照文件
-        filename:'index.html'//最终生成的文件名称，发布到node服务器
-    })
+      // 指定参照文件
+      template: './template.html',
+      // 最终生成的文件 发布到node服务器
+      filename:"index.html"
+  })
   ]
 }
