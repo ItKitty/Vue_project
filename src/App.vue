@@ -32,11 +32,11 @@
 
 
 <style scoped>
-    img{
-        width:42px;
-        height:35px;
-    }
-    .mint-tabbar .mint-tab-item.is-selected{
-        background-color: #fafafa;
-    }
+img {
+  width: 42px;
+  height: 35px;
+}
+.mint-tabbar .mint-tab-item.is-selected {
+  background-color: #fafafa;
+}
 </style>

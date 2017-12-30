@@ -5,6 +5,8 @@ import Vue from 'vue';
 import Mint from 'mint-ui';
 // 导入路由
 import VueRouter from 'vue-router';
+// 导入网络请求 get,post,jsonp
+import VueResource from 'vue-resource';
 
 
 // 基于Vue的包需要设置一下
@@ -12,6 +14,8 @@ import VueRouter from 'vue-router';
 Vue.use(Mint);
 // Vue.prototype.$router 
 Vue.use(VueRouter);
+// 发送网络请求 get,post,jsonp
+Vue.use(VueResource);
 
 // 导入css
 // 上线导入style.min.css
