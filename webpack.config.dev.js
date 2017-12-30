@@ -22,6 +22,9 @@ module.exports={
       }
     ]
   },
+  resolve: {
+    extensions: ['.vue', '.json','*', '.js' ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       // 指定参照文件
