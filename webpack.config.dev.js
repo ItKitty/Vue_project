@@ -1,36 +1,34 @@
-
 // 导入
-var HtmlWebpackPlugin=require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports={
+module.exports = {
   // 打包入口文件
-  entry:"./src/main.js",
+  entry: "./src/main.js",
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.vue$/,
-        use: [
-          { loader: 'vue-loader' }
-        ]
+        use: ['vue-loader']
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' }
-        ]
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(ttf|png)$/,
+        use: ['url-loader']
       }
     ]
   },
   resolve: {
-    extensions: ['.vue', '.json','*', '.js' ]
+    // 设置拓展民
+    extensions: ['.vue', '.json', '*', '.js']
   },
   plugins: [
     new HtmlWebpackPlugin({
       // 指定参照文件
       template: './template.html',
       // 最终生成的文件 发布到node服务器
-      filename:"index.html"
-  })
+      filename: "index.html"
+    })
   ]
 }

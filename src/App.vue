@@ -5,7 +5,7 @@
         <!-- 2.0 中间部 -->
         <router-view style="margin-top:40px"></router-view>
         <!-- 3.0 底部 Tabbar -->
-        <mt-tabbar>
+        <mt-tabbar fixed>
             <mt-tab-item>
                 <router-link to="/home">
                     <img src="http://img08.jiuxian.com/bill/2016/0224/cccd8df26a754c139de800406af82178.png">

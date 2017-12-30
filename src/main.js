@@ -8,7 +8,6 @@ import VueRouter from 'vue-router';
 // 导入网络请求 get,post,jsonp
 import VueResource from 'vue-resource';
 
-
 // 基于Vue的包需要设置一下
 // 它会帮我们注册mint中一些组件，不需要导入就能在所有的vue中的template使用
 Vue.use(Mint);
@@ -20,6 +19,10 @@ Vue.use(VueResource);
 // 导入css
 // 上线导入style.min.css
 import 'mint-ui/lib/style.css'
+// 导入mui样式和ziti
+import './statics/mui/css/mui.css'
+import './statics/css/site.css'
+
 
 // es6 写法
 import App from './App.vue';
@@ -30,13 +33,15 @@ import App from './App.vue';
 import home from './components/home/home.vue';
 import category from './components/category/category.vue';
 import shopcart from './components/shopcart/shopcart.vue';
+import newList from './components/news/newsList.vue';
 
 const router =new VueRouter({
     routes:[
         {path:'/',redirect:"/home"},
         {path:'/home',component:home},
         {path:'/category',component:category},
-        {path:'/shopcart',component:shopcart}
+        {path:'/shopcart',component:shopcart},
+        {path:'/news/newList',component:newList},
     ]
 })
 
