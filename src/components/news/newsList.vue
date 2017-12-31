@@ -6,7 +6,7 @@
                 <div class="mui-media-body">
                     <span class='mui'>{{item.title}}</span>
                     <p class="time">
-                        <span>{{item.add_time}}</span>
+                        <span>{{item.add_time | fmtDate("YYYY-MM-DD HH:mm:ss")}}</span>
                         <span>点击数{{item.click}}次</span>
                     </p>
                 </div>
@@ -42,6 +42,9 @@
 
 
 <script>
+// 导入common.js
+import common from "../../common/common.js";
+
 export default {
   data() {
     return {
@@ -54,8 +57,10 @@ export default {
   },
   methods: {
     getNewsListData() {
-      const url = "http://vue.studyit.io/api/getnewslist";
-
+      // const url = common.apihost+"api/getnewslist";
+      // es6 模板字符串
+      const url = `${common.apihost}api/getnewslist`;
+      console.log(url);
       this.$http.get(url).then(
         res => {
           this.newList = res.body.message;

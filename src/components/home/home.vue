@@ -1,54 +1,54 @@
 <template>
-    <div>
-        <!-- 1.0 轮播图 -->
-        <mt-swipe>
-            <mt-swipe-item v-for="(item,index) in lunboArray" :key="index">
-                <img :src="item.img" alt="">
-            </mt-swipe-item>
-        </mt-swipe>
+  <div>
+    <!-- 1.0 轮播图 -->
+    <mt-swipe>
+      <mt-swipe-item v-for="(item,index) in lunboArray" :key="index">
+        <img :src="item.img" alt="">
+      </mt-swipe-item>
+    </mt-swipe>
 
-        <!-- 2.0 九宫格 -->
-        <ul class="mui-table-view mui-grid-view mui-grid-9">
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <router-link to="/news/newList">
-                    <span class="mui-icon mui-icon-home"></span>
-                    <div class="mui-media-body">新闻咨询</div>
-                </router-link>
-            </li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
-                    <span class="mui-icon mui-icon-email">
-                        <span class="mui-badge">5</span>
-                    </span>
-                    <div class="mui-media-body">图片分享</div>
-                </a>
-            </li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
-                    <span class="mui-icon mui-icon-chatbubble"></span>
-                    <div class="mui-media-body">商品购买</div>
-                </a>
-            </li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
-                    <span class="mui-icon mui-icon-location"></span>
-                    <div class="mui-media-body">视频专区</div>
-                </a>
-            </li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
-                    <span class="mui-icon mui-icon-search"></span>
-                    <div class="mui-media-body">留言反馈</div>
-                </a>
-            </li>
-            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
-                    <span class="mui-icon mui-icon-phone"></span>
-                    <div class="mui-media-body">联系我们</div>
-                </a>
-            </li>
-        </ul>
-    </div>
+    <!-- 2.0 九宫格 -->
+    <ul class="mui-table-view mui-grid-view mui-grid-9">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <router-link to="/news/newList">
+          <span class="mui-icon mui-icon-home"></span>
+          <div class="mui-media-body">新闻咨询</div>
+        </router-link>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <span class="mui-icon mui-icon-email">
+            <span class="mui-badge">5</span>
+          </span>
+          <div class="mui-media-body">图片分享</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <span class="mui-icon mui-icon-chatbubble"></span>
+          <div class="mui-media-body">商品购买</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <span class="mui-icon mui-icon-location"></span>
+          <div class="mui-media-body">视频专区</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <span class="mui-icon mui-icon-search"></span>
+          <div class="mui-media-body">留言反馈</div>
+        </a>
+      </li>
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <a href="#">
+          <span class="mui-icon mui-icon-phone"></span>
+          <div class="mui-media-body">联系我们</div>
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style scoped>
@@ -110,6 +110,9 @@ img {
 
 
 <script>
+// 导入common.js
+import common from "../../common/common.js";
+
 // es5
 // module.exports={}
 
@@ -129,12 +132,14 @@ export default {
   },
   // Vue底层给我们提供的生命周期函数之一，只要程序员实现了，Vue底层在home.vue组件被创建出来的时候，就会自动调用它
   created() {
-    console.log("111111111");
+    // console.log("111111111");
     this.getLunboData();
   },
   methods: {
     getLunboData() {
-      const url = "http://vue.studyit.io/api/getlunbo";
+      // const url = common.apihost+"/api/getlunbo";
+      // es6 字符串模板
+      const url = `${common.apihost}api/getlunbo`;
       this.$http.get(url).then(
         res => {
           console.log(res.body.message);

@@ -7,6 +7,8 @@ import Mint from 'mint-ui';
 import VueRouter from 'vue-router';
 // 导入网络请求 get,post,jsonp
 import VueResource from 'vue-resource';
+// 时间插件
+import moment from 'moment';
 
 // 基于Vue的包需要设置一下
 // 它会帮我们注册mint中一些组件，不需要导入就能在所有的vue中的template使用
@@ -26,6 +28,17 @@ import './statics/css/site.css'
 
 // es6 写法
 import App from './App.vue';
+
+// 过滤器
+Vue.filter('fmtDate',(input,fmtStr="YYYY-MM-DD HH:mm:ss")=>{
+    // const lastFmtStr=fmtStr||"YYYY-MM-DD HH:mm:ss";
+
+    // 第一个参数：要格式化的原声字符串
+    // 第二个参数：要格式化成的日期格式
+    // return monent(input).format(lastFmtStr)
+    return moment(input).format(fmtStr)
+})
+
 
 
 // 路由相关
