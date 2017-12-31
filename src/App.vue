@@ -40,45 +40,51 @@ img {
 .mint-tabbar .mint-tab-item.is-selected {
   background-color: #fafafa;
 }
-.hiddenTabBar{
-    display: none;
+.hiddenTabBar {
+  display: none;
 }
-.back{
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
-    position: fixed;
-    left: 6px;
-    top: 10px;
-    z-index: 2;
+.back {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  position: fixed;
+  left: 6px;
+  top: 10px;
+  z-index: 2;
 }
 </style>
 
 <script>
-    export default{
-        data(){
-            return{
-                isShowBack:false,
-                isShowTabBar:true
-            }
-        },
-        methods:{
-            goback(){
-                // history.back()
-                this.$router.go(-1)
-            }
-        },
-        watch:{
-            $route:function(newValue,oldValue){
-                if(newValue.path!='/home'){
-                    this.isShowBack=true;
-                    this.isShowTabBar=false
-                }else{
-                    this.isShowBack=false;
-                    this.isShowTabBar=true
-                }
-                console.log(newValue)
-            }
-        }
+export default {
+  data() {
+    return {
+      isShowBack: false,
+      isShowTabBar: true
+    };
+  },
+  methods: {
+    goback() {
+      // history.back()
+      this.$router.go(-1);
+    },
+    isShowOrHidden(path) {
+      if (path != "/home") {
+        this.isShowBack = true;
+        this.isShowTabBar = false;
+      } else {
+        this.isShowBack = false;
+        this.isShowTabBar = true;
+      }
     }
+  },
+  created() {
+      this.isShowOrHidden(this.$route.path)
+  },
+  watch: {
+    $route(newValue, oldValue) {
+      this.isShowOrHidden(newValue.path);
+      console.log(newValue);
+    }
+  }
+};
 </script>
