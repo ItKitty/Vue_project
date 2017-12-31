@@ -46,7 +46,8 @@ Vue.filter('fmtDate',(input,fmtStr="YYYY-MM-DD HH:mm:ss")=>{
 import home from './components/home/home.vue';
 import category from './components/category/category.vue';
 import shopcart from './components/shopcart/shopcart.vue';
-import newList from './components/news/newsList.vue';
+import newsList from './components/news/newsList.vue';
+import newsinfo from './components/news/newsinfo.vue';
 
 const router =new VueRouter({
     routes:[
@@ -54,7 +55,8 @@ const router =new VueRouter({
         {path:'/home',component:home},
         {path:'/category',component:category},
         {path:'/shopcart',component:shopcart},
-        {path:'/news/newList',component:newList},
+        {path:'/news/newsList',component:newsList},
+        {path:'/news/newsinfo/:newsId',component:newsinfo},
     ]
 })
 

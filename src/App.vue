@@ -2,10 +2,11 @@
     <div>
         <!-- 1.0 头部 Header -->
         <mt-header fixed title="固定在顶部"></mt-header>
+        <div @click="goback" v-show="isShowBack" class="back">&lt;返回</div>
         <!-- 2.0 中间部 -->
         <router-view style="margin-top:40px"></router-view>
         <!-- 3.0 底部 Tabbar -->
-        <mt-tabbar fixed>
+        <mt-tabbar :class="isShowTabBar?'':'hiddenTabBar'" fixed>
             <mt-tab-item>
                 <router-link to="/home">
                     <img src="http://img08.jiuxian.com/bill/2016/0224/cccd8df26a754c139de800406af82178.png">
@@ -39,4 +40,45 @@ img {
 .mint-tabbar .mint-tab-item.is-selected {
   background-color: #fafafa;
 }
+.hiddenTabBar{
+    display: none;
+}
+.back{
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    position: fixed;
+    left: 6px;
+    top: 10px;
+    z-index: 2;
+}
 </style>
+
+<script>
+    export default{
+        data(){
+            return{
+                isShowBack:false,
+                isShowTabBar:true
+            }
+        },
+        methods:{
+            goback(){
+                // history.back()
+                this.$router.go(-1)
+            }
+        },
+        watch:{
+            $route:function(newValue,oldValue){
+                if(newValue.path!='/home'){
+                    this.isShowBack=true;
+                    this.isShowTabBar=false
+                }else{
+                    this.isShowBack=false;
+                    this.isShowTabBar=true
+                }
+                console.log(newValue)
+            }
+        }
+    }
+</script>

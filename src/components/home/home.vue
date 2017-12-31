@@ -10,7 +10,7 @@
     <!-- 2.0 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/news/newList">
+        <router-link to="/news/newsList">
           <span class="mui-icon mui-icon-home"></span>
           <div class="mui-media-body">新闻咨询</div>
         </router-link>
