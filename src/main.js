@@ -55,6 +55,8 @@ import newsList from './components/news/newsList.vue';
 import newsinfo from './components/news/newsinfo.vue';
 import photoList from './components/photo/photoList.vue';
 import photoInfo from './components/photo/photoInfo.vue';
+import goodsList from './components/goods/goodList.vue';
+import goodsInfo from './components/goods/goodsInfo.vue';
 
 const router = new VueRouter({
     routes: [{
@@ -88,6 +90,14 @@ const router = new VueRouter({
         {
             path: '/photo/photoInfo/:imgId',
             component: photoInfo
+        },
+        {
+            path: '/goods/goodsList',
+            component: goodsList
+        },
+        {
+            path: '/goods/goodsInfo:goodsId',
+            component: goodsInfo
         }
     ]
 })
