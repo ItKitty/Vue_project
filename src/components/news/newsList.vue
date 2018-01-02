@@ -15,7 +15,7 @@
     </ul>
 </template>
 
-<style>
+<style scoped>
 .mui-table-view-cell.mui-media {
   height: 80px;
 }

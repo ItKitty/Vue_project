@@ -48,6 +48,7 @@ import category from './components/category/category.vue';
 import shopcart from './components/shopcart/shopcart.vue';
 import newsList from './components/news/newsList.vue';
 import newsinfo from './components/news/newsinfo.vue';
+import photoList from './components/photo/photoList.vue';
 
 const router =new VueRouter({
     routes:[
@@ -57,6 +58,7 @@ const router =new VueRouter({
         {path:'/shopcart',component:shopcart},
         {path:'/news/newsList',component:newsList},
         {path:'/news/newsinfo/:newsId',component:newsinfo},
+        {path:'/photo/photoList',component:photoList},
     ]
 })
 
