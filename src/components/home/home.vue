@@ -1,11 +1,7 @@
 <template>
   <div>
-    <!-- 1.0 轮播图 -->
-    <mt-swipe>
-      <mt-swipe-item v-for="(item,index) in lunboArray" :key="index">
-        <img :src="item.img" alt="">
-      </mt-swipe-item>
-    </mt-swipe>
+    <!-- 1.0 轮播组件 -->
+    <subswipe lunbo_url="api/getlunbo" :lunbo_time="3000"></subswipe>
 
     <!-- 2.0 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -54,14 +50,7 @@
 </template>
 
 <style scoped>
-.mint-swipe {
-  height: 250px;
-  width: 100%;
-}
-img {
-  height: 100%;
-  width: 100%;
-}
+
 /** 九宫格的样式 **/
 .mui-icon::before {
   content: "";
@@ -115,6 +104,10 @@ img {
 // 导入common.js
 import common from "../../common/common.js";
 
+// 导入轮播组件
+import subswipe from "../subcomponents/subswipe.vue"
+
+
 // es5
 // module.exports={}
 
@@ -125,31 +118,9 @@ export default {
   //     return{}
   // }
 
-  // es6
-  data() {
-    return {
-      // 轮播图数组
-      lunboArray: []
-    };
-  },
-  // Vue底层给我们提供的生命周期函数之一，只要程序员实现了，Vue底层在home.vue组件被创建出来的时候，就会自动调用它
-  created() {
-    // console.log("111111111");
-    this.getLunboData();
-  },
-  methods: {
-    getLunboData() {
-      // const url = common.apihost+"/api/getlunbo";
-      // es6 字符串模板
-      const url = `${common.apihost}api/getlunbo`;
-      this.$http.get(url).then(
-        res => {
-          console.log(res.body.message);
-          this.lunboArray = res.body.message;
-        },
-        err => {}
-      );
-    }
+  // 注册轮播组件
+  components:{
+    subswipe
   }
 };
 </script>
