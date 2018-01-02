@@ -3,25 +3,29 @@
         <!-- 1.0 提交评论 -->
         <div class="postComment">
             <h4>提交评论</h4>
-            <textarea placeholder="请输入评论内容" name="" id="textareaId" cols="30" rows="10"></textarea>
-            <mt-button @click="postComent" type="primary">提交评论</mt-button>
+            <textarea ref="textareaRef" v-model="content" placeholder="请输入评论内容" name="" id="textareaId" cols="30" rows="10"></textarea>
+            <mt-button @click="postComent" type="primary" size="large">提交评论</mt-button>
         </div>
         <!-- 2.0 评论区域 -->
         <div class="commentList">
             <h4>评论列表</h4>
             <div v-for="(item,i) in commentList" :key="i" class="commentItem">
-                <p>{{item.content}}</p>
+                <p class="contentStyle">{{item.content}}</p>
                 <p class="userAndTime">
                     <span>{{item.user_name}}</span>
                     <span>{{item.add_time | fmtDate}}</span>
                 </p>
             </div>
-            <mt-button @click="loadMore" class="loadMore" plain type="danger">加载更多</mt-button>
+            <mt-button @click="loadMore" class="loadMore" plain type="danger" size="large">加载更多</mt-button>
         </div>
     </div>
 </template>
 
 <style scoped>
+.contentStyle {
+  font-size: 14px;
+  color: black;
+}
 .postComment,
 .commentList {
   padding: 6px;
@@ -50,12 +54,14 @@ h4 {
 <script>
 // 
 import common from "../../common/common"
-import $ from "jquery"
-
+// import $ from "jquery"
+//es6按需导入
+    import { Toast } from 'mint-ui';
 export default {
     data(){
         return{
-            pageindex=1,
+            pageindex:1,
+            // content:'',
             commentList:[]
         }
     },
@@ -65,7 +71,7 @@ export default {
   },
   methods:{
       getCommonListData(){
-          const url =`${common.apapihost}api/getcomments/${this.comentId}?pageindex=${this.pageindex}`
+          const url =`${common.apihost}api/getcomments/${this.commentId}?pageindex=${this.pageindex}`
 
           this.$http.get(url).then(res=>{
               if(this.pageindex==1){
@@ -83,7 +89,41 @@ export default {
       },
          //  提交评论
       postComent(){
-          const content=$("textareaId").val();
+        // jq 获取元素
+        // const content=$("textareaId").val();
+
+        // refs获取元素
+        const textareaDom=this.$refs.textareaRef;
+        const content =textareaDom.value;
+
+        if(content.trim().length==0) {
+            Toast({
+                message: '评论内容不能为空',
+                position: 'middle',
+                duration: 2000
+            });
+            return
+        }
+
+        //发送网络请求
+                const url = `${common.apihost}api/postcomment/${this.commentId}`
+                this.$http.post(url,{content},{emulateJSON:true}).then(response=>{
+                    //1.弹出提示信息，评论成功
+                    Toast({
+                        message: response.body.message,
+                        position: 'middle',
+                        duration: 2000
+                    });
+
+                    //2.清空评论内容
+                    textareaDom.value = ""
+
+                    //3.重新加载第一页的评论数据
+                    this.pageIndex = 1
+                    this.getCommentListData()
+                }).catch(err=>{
+                    
+                })
 
       }
   }

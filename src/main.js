@@ -13,7 +13,7 @@ import moment from 'moment';
 // 基于Vue的包需要设置一下
 // 它会帮我们注册mint中一些组件，不需要导入就能在所有的vue中的template使用
 Vue.use(Mint);
-// 动态路由 Vue.prototype.$route（路径）    Vue.prototype.$router
+// 动态路由 Vue.prototype.$route（路径）    Vue.prototype.$router(路由跳转)
 Vue.use(VueRouter);
 // 发送网络请求 get,post,jsonp
 Vue.use(VueResource);
