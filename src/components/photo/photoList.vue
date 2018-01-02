@@ -12,7 +12,7 @@
         <div class="photoListStyle">
             <ul>
                 <li v-for="item in photoList" :key="item.id">
-                    <router-link :to="'/photo/photoinfo/'+item.id">
+                    <router-link :to="'/photo/photoInfo/'+item.id">
                         <!-- 图片 -->
                         <img :src="item.img_url" alt="">
                         <!-- 显示标题和摘要的p标签 -->

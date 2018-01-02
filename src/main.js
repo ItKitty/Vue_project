@@ -9,6 +9,9 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 // 时间插件
 import moment from 'moment';
+// 图片预览包
+import VuePreview from 'vue-preview';
+
 
 // 基于Vue的包需要设置一下
 // 它会帮我们注册mint中一些组件，不需要导入就能在所有的vue中的template使用
@@ -17,6 +20,8 @@ Vue.use(Mint);
 Vue.use(VueRouter);
 // 发送网络请求 get,post,jsonp
 Vue.use(VueResource);
+// 图片预览
+Vue.use(VuePreview);
 
 // 导入css
 // 上线导入style.min.css
@@ -30,7 +35,7 @@ import './statics/css/site.css'
 import App from './App.vue';
 
 // 过滤器
-Vue.filter('fmtDate',(input,fmtStr="YYYY-MM-DD HH:mm:ss")=>{
+Vue.filter('fmtDate', (input, fmtStr = "YYYY-MM-DD HH:mm:ss") => {
     // const lastFmtStr=fmtStr||"YYYY-MM-DD HH:mm:ss";
 
     // 第一个参数：要格式化的原声字符串
@@ -49,16 +54,41 @@ import shopcart from './components/shopcart/shopcart.vue';
 import newsList from './components/news/newsList.vue';
 import newsinfo from './components/news/newsinfo.vue';
 import photoList from './components/photo/photoList.vue';
+import photoInfo from './components/photo/photoInfo.vue';
 
-const router =new VueRouter({
-    routes:[
-        {path:'/',redirect:"/home"},
-        {path:'/home',component:home},
-        {path:'/category',component:category},
-        {path:'/shopcart',component:shopcart},
-        {path:'/news/newsList',component:newsList},
-        {path:'/news/newsinfo/:newsId',component:newsinfo},
-        {path:'/photo/photoList',component:photoList},
+const router = new VueRouter({
+    routes: [{
+            path: '/',
+            redirect: "/home"
+        },
+        {
+            path: '/home',
+            component: home
+        },
+        {
+            path: '/category',
+            component: category
+        },
+        {
+            path: '/shopcart',
+            component: shopcart
+        },
+        {
+            path: '/news/newsList',
+            component: newsList
+        },
+        {
+            path: '/news/newsinfo/:newsId',
+            component: newsinfo
+        },
+        {
+            path: '/photo/photoList',
+            component: photoList
+        },
+        {
+            path: '/photo/photoInfo/:imgId',
+            component: photoInfo
+        }
     ]
 })
 
