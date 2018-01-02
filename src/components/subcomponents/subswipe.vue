@@ -43,13 +43,18 @@ export default {
       const url = `${common.apihost}${this.lunbo_url}`;
       this.$http.get(url).then(
         res => {
-          console.log(res.body.message);
+            res.body.message.forEach(item => {
+                if (item.src) {
+                    item.img = item.src;
+            }
+          });
+            console.log(res.body.message);
           this.lunboArray = res.body.message;
         },
         err => {}
       );
     }
   },
-  props:['lunbo_url','lunbo_time']
+  props: ["lunbo_url", "lunbo_time"]
 };
 </script>

@@ -96,7 +96,7 @@ const router = new VueRouter({
             component: goodsList
         },
         {
-            path: '/goods/goodsInfo:goodsId',
+            path: '/goods/goodsInfo/:goodsId',
             component: goodsInfo
         }
     ]
