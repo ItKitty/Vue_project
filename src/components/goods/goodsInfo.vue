@@ -93,7 +93,8 @@ import common from "../../common/common.js";
 import subswipe from "../subcomponents/subswipe.vue";
 // 调用数字插件
 import subnumber from '../subcomponents/subnumber.vue';
-
+// 导入空的vue对象作为事件总线
+import bus from '../../common/commonvue'
 
 export default {
   data() {
@@ -145,7 +146,10 @@ export default {
     getCountChange(count){
       this.goodsCount=count
     },
-    addToShopCart() {}
+    addToShopCart() {
+      // 传值给app.vue
+      bus.$emit('goodsCount',this.goodsCount)
+    }
   },
   components: {
     subswipe,
