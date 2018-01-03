@@ -113,6 +113,9 @@ export default {
     //   this.badge +=goodsCount
     // })
   },
+  updated() {
+    this.badge = this.$store.getters.getTotalCount;
+  },
   watch: {
     $route(newValue, oldValue) {
       this.isShowOrHidden(newValue.path);

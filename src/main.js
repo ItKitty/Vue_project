@@ -22,6 +22,10 @@ Vue.component(Loadmore.name, Loadmore);
 import axios from "axios";
 Vue.prototype.$axios = axios;
 
+// 导入vuex
+import Vuex from 'vuex'
+
+
 
 // 基于Vue的包需要设置一下
 // 它会帮我们注册mint中一些组件，不需要导入就能在所有的vue中的template使用
@@ -32,6 +36,8 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 // 图片预览
 Vue.use(VuePreview);
+//Vue.prototype.$store
+Vue.use(Vuex)
 
 // 导入css
 // 上线导入style.min.css
@@ -116,14 +122,36 @@ const router = new VueRouter({
             component: goodsComment
         },
         {
-            name:'pictureAndText',
+            name: 'pictureAndText',
             path: '/goods/pictureAndText', //用query后面不用跟参数
             component: pictureAndText
         }
     ]
 })
 
+// 创建一个仓库
+const store = new Vuex.Store({
+    state: {
+        goodList: []
+    },
+    mutations: {
+        // state是固定的，目的是为了拿到state中的数据
+        addGoods(state, goods) {
+            state.goodList.push(goods)
+        }
+    },
+    getters: {
+        // 获取当前仓库中
+        getTotalCount(state) {
+            let totalCount = 0;
+            state.goodList.forEach(item => {
+                totalCount += item.count
+            })
+            return totalCount
+        }
+    }
 
+})
 
 
 
@@ -131,7 +159,7 @@ const router = new VueRouter({
 new Vue({
 
     router,
-
+    store,
     // 渲染根组件 这个方法从导入的 Vue这个包中获得 渲染函数 h 可以代替 creElement
     // render:function(creElement){
     //     return creElement(App)

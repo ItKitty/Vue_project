@@ -148,7 +148,14 @@ export default {
     },
     addToShopCart() {
       // 传值给app.vue
-      bus.$emit('goodsCount',this.goodsCount)
+      // bus.$emit('goodsCount',this.goodsCount)
+
+      // 传值给App.vue 因为vuex都是对象 写一个键值对 {goodsId:87,count:5}
+      const goods={goodsId:this.$route.params.goodsId,count:this.goodsCount};
+
+      // 调用mutation中addGoods,将对象goods存储在仓库中 存在main.js
+      this.$store.commit('addGoods',goods);
+
     }
   },
   components: {
