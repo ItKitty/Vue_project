@@ -14,6 +14,8 @@
         <span>{{goodsInfo.sell_price}}</span>
       </p>
 
+      <!-- 插入数字子组件 v-on 监听子组件穿过来的数值-->
+      <subnumber @countChange="getCountChange"></subnumber>
       <mt-button size="small" type="primary">立即购买</mt-button>
       <mt-button size="small" @click="addToShopCart" type="danger">加入购物车</mt-button>
     </div>
@@ -89,11 +91,15 @@ h6 {
 import common from "../../common/common.js";
 // 导入轮播子组件
 import subswipe from "../subcomponents/subswipe.vue";
+// 调用数字插件
+import subnumber from '../subcomponents/subnumber.vue';
+
 
 export default {
   data() {
     return {
-      goodsInfo: {}
+      goodsInfo: {},
+      goodsCount:1
     };
   },
   created() {
@@ -135,10 +141,15 @@ export default {
         query: { goodsId: this.$route.params.goodsId }
       });
     },
+    // 触发自定义事件（countchange）要执行的函数 count的值 有子组件传递过来
+    getCountChange(count){
+      this.goodsCount=count
+    },
     addToShopCart() {}
   },
   components: {
-    subswipe
+    subswipe,
+    subnumber
   }
 };
 </script>
