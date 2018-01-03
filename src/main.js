@@ -12,6 +12,14 @@ import moment from 'moment';
 // 图片预览包
 import VuePreview from 'vue-preview';
 
+import { Loadmore } from 'mint-ui';
+
+Vue.component(Loadmore.name, Loadmore);
+
+//
+import axios from "axios";
+Vue.prototype.$axios=axios;
+
 
 // 基于Vue的包需要设置一下
 // 它会帮我们注册mint中一些组件，不需要导入就能在所有的vue中的template使用
@@ -57,6 +65,7 @@ import photoList from './components/photo/photoList.vue';
 import photoInfo from './components/photo/photoInfo.vue';
 import goodsList from './components/goods/goodList.vue';
 import goodsInfo from './components/goods/goodsInfo.vue';
+import goodsComment from './components/goods/goodsComment.vue';
 
 const router = new VueRouter({
     routes: [{
@@ -98,6 +107,10 @@ const router = new VueRouter({
         {
             path: '/goods/goodsInfo/:goodsId',
             component: goodsInfo
+        },
+        {
+            path: '/goods/goodsComment',//用query后面不用跟参数
+            component: goodsComment
         }
     ]
 })
