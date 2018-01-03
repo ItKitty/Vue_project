@@ -12,13 +12,15 @@ import moment from 'moment';
 // 图片预览包
 import VuePreview from 'vue-preview';
 
-import { Loadmore } from 'mint-ui';
+import {
+    Loadmore
+} from 'mint-ui';
 
 Vue.component(Loadmore.name, Loadmore);
 
 //
 import axios from "axios";
-Vue.prototype.$axios=axios;
+Vue.prototype.$axios = axios;
 
 
 // 基于Vue的包需要设置一下
@@ -66,6 +68,7 @@ import photoInfo from './components/photo/photoInfo.vue';
 import goodsList from './components/goods/goodList.vue';
 import goodsInfo from './components/goods/goodsInfo.vue';
 import goodsComment from './components/goods/goodsComment.vue';
+import pictureAndText from "./components/goods/pictureAndText.vue";
 
 const router = new VueRouter({
     routes: [{
@@ -109,8 +112,13 @@ const router = new VueRouter({
             component: goodsInfo
         },
         {
-            path: '/goods/goodsComment',//用query后面不用跟参数
+            path: '/goods/goodsComment', //用query后面不用跟参数
             component: goodsComment
+        },
+        {
+            name:'pictureAndText',
+            path: '/goods/pictureAndText', //用query后面不用跟参数
+            component: pictureAndText
         }
     ]
 })

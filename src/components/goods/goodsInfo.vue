@@ -122,7 +122,12 @@ export default {
         .catch(err => {});
     },
     // 页面跳转-图文介绍
-    goToPictureAndText() {},
+    goToPictureAndText() {
+      this.$router.push({
+        name:'pictureAndText',
+        query:{goodsId:this.$route.params.goodsId}
+      })
+    },
     // 页面跳转-评论
     goToGoodsComment() {
       this.$router.push({
