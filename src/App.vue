@@ -20,6 +20,7 @@
             <mt-tab-item>
                 <router-link to="/shopcart">
                     <img src="http://img08.jiuxian.com/bill/2016/0224/42baf46987b6460bb43b3396e9941653.png">
+                    <span v-show="badge>0" class="mui-badge mui-badge-danger">{{badge}}</span>
                 </router-link>
             </mt-tab-item>
             <mt-tab-item>
@@ -39,6 +40,7 @@ img {
 }
 .mint-tabbar .mint-tab-item.is-selected {
   background-color: #fafafa;
+  position: relative;
 }
 .hiddenTabBar {
   display: none;
@@ -52,6 +54,16 @@ img {
   top: 10px;
   z-index: 2;
 }
+/**
+    数字角标
+  */
+  .mui-badge{
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    background-color: red;
+    color: white;
+  }
 </style>
 
 <script>
@@ -59,7 +71,8 @@ export default {
   data() {
     return {
       isShowBack: false,
-      isShowTabBar: true
+      isShowTabBar: true,
+      badge:10
     };
   },
   methods: {
@@ -83,7 +96,7 @@ export default {
   watch: {
     $route(newValue, oldValue) {
       this.isShowOrHidden(newValue.path);
-      console.log(newValue);
+      // console.log(newValue);
     }
   }
 };
