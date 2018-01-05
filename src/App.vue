@@ -119,7 +119,6 @@ export default {
   watch: {
     $route(newValue, oldValue) {
       this.isShowOrHidden(newValue.path);
-      // console.log(newValue);
     }
   }
 };

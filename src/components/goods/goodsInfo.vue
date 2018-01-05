@@ -92,15 +92,17 @@ import common from "../../common/common.js";
 // 导入轮播子组件
 import subswipe from "../subcomponents/subswipe.vue";
 // 调用数字插件
-import subnumber from '../subcomponents/subnumber.vue';
+import subnumber from "../subcomponents/subnumber.vue";
 // 导入空的vue对象作为事件总线
-import bus from '../../common/commonvue'
+import bus from "../../common/commonvue";
+// 导入提示
+import { Toast } from "mint-ui";
 
 export default {
   data() {
     return {
       goodsInfo: {},
-      goodsCount:1
+      goodsCount: 1
     };
   },
   created() {
@@ -114,7 +116,6 @@ export default {
 
       // 1.x vue-resource
       // this.$http.get(url).then(res => {
-      //     console.log(res);
       //     this.goodsInfo = res.body.message;
       //   })
       //   .catch(err => {});
@@ -123,7 +124,6 @@ export default {
       this.$axios
         .get(url)
         .then(res => {
-          console.log(res);
           this.goodsInfo = res.data.message[0];
         })
         .catch(err => {});
@@ -131,9 +131,9 @@ export default {
     // 页面跳转-图文介绍
     goToPictureAndText() {
       this.$router.push({
-        name:'pictureAndText',
-        query:{goodsId:this.$route.params.goodsId}
-      })
+        name: "pictureAndText",
+        query: { goodsId: this.$route.params.goodsId }
+      });
     },
     // 页面跳转-评论
     goToGoodsComment() {
@@ -143,19 +143,27 @@ export default {
       });
     },
     // 触发自定义事件（countchange）要执行的函数 count的值 有子组件传递过来
-    getCountChange(count){
-      this.goodsCount=count
+    getCountChange(count) {
+      this.goodsCount = count;
     },
     addToShopCart() {
+      // 添加提示
+      Toast({
+        message: "加入购物车成功",
+        duration: 2000
+      });
+
       // 传值给app.vue
       // bus.$emit('goodsCount',this.goodsCount)
 
       // 传值给App.vue 因为vuex都是对象 写一个键值对 {goodsId:87,count:5}
-      const goods={goodsId:this.$route.params.goodsId,count:this.goodsCount};
+      const goods = {
+        goodsId: this.$route.params.goodsId,
+        count: this.goodsCount
+      };
 
       // 调用mutation中addGoods,将对象goods存储在仓库中 存在main.js
-      this.$store.commit('addGoods',goods);
-
+      this.$store.commit("addGoods", goods);
     }
   },
   components: {

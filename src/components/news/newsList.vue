@@ -65,7 +65,7 @@ export default {
       // const url = common.apihost+"api/getnewslist";
       // es6 模板字符串
       const url = `${common.apihost}api/getnewslist`;
-      console.log(url);
+      
       this.$http.get(url).then(
         res => {
           this.newList = res.body.message;
@@ -88,7 +88,7 @@ export default {
       // this.$refs.loadmore.onTopLoaded();
     },
     loadBottom() {
-      console.log("12");
+      
       // 加载更多数据
       // this.allLoaded = true; // 若数据已全部获取完毕
       // this.$refs.loadmore.onBottomLoaded();

@@ -48,7 +48,6 @@ export default {
         .goodsId}`;
 
       this.$axios.get(url).then(res => {
-        console.log(res);
         this.pictureAndText = res.data.message[0];
       });
     }

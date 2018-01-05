@@ -48,7 +48,7 @@ export default {
                     item.img = item.src;
             }
           });
-            console.log(res.body.message);
+            // console.log(res.body.message);
           this.lunboArray = res.body.message;
         },
         err => {}

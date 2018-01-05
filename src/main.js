@@ -141,15 +141,20 @@ const store = new Vuex.Store({
         }
     },
     getters: {
-        // 获取当前仓库中
+        // 获取当前仓库中,商品列表总数量
         getTotalCount(state) {
             let totalCount = 0;
             state.goodList.forEach(item => {
                 totalCount += item.count
             })
             return totalCount
+        },
+        // 获取加入到购物车中的数据
+        getGoodsList(state){
+            return state.goodList
         }
     }
+
 
 })
 

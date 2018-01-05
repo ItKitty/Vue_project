@@ -121,7 +121,7 @@ export default {
 
           //2.清空评论内容
           textareaDom.value = "";
-            console.log(textareaDom.valu)
+          
           //3.重新加载第一页的评论数据
           this.pageindex = 1;
           this.getCommonListData();

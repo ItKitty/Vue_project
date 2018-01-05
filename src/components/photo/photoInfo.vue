@@ -60,7 +60,6 @@ export default {
       this.$http
         .get(url)
         .then(res => {
-        //   console.log(res);
           this.photoInfo = res.body.message[0];
         })
         .catch(err => {});
@@ -77,7 +76,6 @@ export default {
             item.w = 600;
             item.h = 600;
           });
-        //   console.log(res);
           this.thumbImages = res.body.message;
         })
         .catch(err => {});
